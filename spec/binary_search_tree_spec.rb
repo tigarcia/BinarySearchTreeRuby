@@ -93,5 +93,25 @@ describe BinarySearchTree do
       expect(tree.size).to eq(4)
       expect(tree.find(4)).to eq(4)
     end
+
+    it 'should delete an item in the middle of a long list of nodes' do
+      tree.insert(6).insert(3).insert(4).insert(2).insert(11).insert(7).insert(9).insert(8).insert(10).insert(22)
+      expect(tree.size).to eq(10)
+      expect(tree.delete(6)).to eq(6)
+      expect(tree.size).to eq(9)
+      expect(tree.find(6)).to be_nil()
+      expect(tree.find(3)).to eq(3)
+      expect(tree.find(4)).to eq(4)
+      expect(tree.find(2)).to eq(2)
+      expect(tree.find(11)).to eq(11)
+      expect(tree.find(7)).to eq(7)
+      expect(tree.find(9)).to eq(9)
+      expect(tree.find(8)).to eq(8)
+      expect(tree.find(10)).to eq(10)
+      expect(tree.find(22)).to eq(22)
+      tree.insert(6)
+      expect(tree.size).to eq(10)
+      expect(tree.find(6)).to eq(6)
+    end
   end
 end

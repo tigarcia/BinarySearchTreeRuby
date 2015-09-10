@@ -1,7 +1,5 @@
 require 'pry'
 
-
-
 class BinarySearchTree
   attr_reader :size
   
@@ -111,8 +109,8 @@ class BinarySearchTree
       next_node = node.right
 
       until next_node.left.nil?
-        next_node = next_node.left
         parent = next_node
+        next_node = next_node.left
       end
 
       {node: next_node, parent: parent}
@@ -139,13 +137,20 @@ class BinarySearchTree
         end
       else
         nodes = find_next(node)
-        nodes[:parent] = nil if nodes[:parent].left == nodes[:node]
+        nodes[:parent].left = nil if nodes[:parent].left == nodes[:node]
+        nodes[:parent].right = nil if nodes[:parent].right == nodes[:node]
         if parent.nil?
           @root = nodes[:node]
         else
           parent.right = nodes[:node] if parent.right == node
           parent.left = nodes[:node] if parent.left == node
         end
+        nodes[:node].left = node.left
+        tempNode = nodes[:node]
+        tempNode = tempNode.right until tempNode.right.nil?
+        tempNode.right = node.right
+
+        nodes[:parent].left = nil
       end
 
       @size -= 1
