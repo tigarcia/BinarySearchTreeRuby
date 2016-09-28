@@ -15,8 +15,9 @@ class BinarySearchTree
   def initialize(values=[])
     @root = nil
     @size = 0
-    if values.length > 0
-      ## TODO: Add the values from the array to the tree
+
+    values.each do |v|
+      insert(v)
     end
   end
 
