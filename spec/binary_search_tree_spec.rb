@@ -5,6 +5,14 @@ require 'pry'
 describe BinarySearchTree do
   let(:tree) { BinarySearchTree.new }
 
+  describe "initialize" do
+    it 'should initialize when given multiple values' do
+      init_tree = BinarySearchTree.new([5, 2, 4, 1])
+      expect(init_tree).to respond_to(:size)
+      expect(init_tree.size).to eq(4)
+    end
+  end 
+
   describe "size" do
     it 'starts out with a size of 0' do
       expect(tree).to respond_to(:size)
